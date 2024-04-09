@@ -1,4 +1,4 @@
-package main
+package gui
 
 import (
 	"fyne.io/fyne/v2"
@@ -7,16 +7,16 @@ import (
 
 const sidewidth = 220
 
-type fysionLayout struct {
+type hermesLayout struct {
 	top, left, right, content fyne.CanvasObject
 	dividers                  [3]fyne.CanvasObject
 }
 
-func newFysionLayout(top, left, right, content fyne.CanvasObject, dividers [3]fyne.CanvasObject) fyne.Layout {
-	return &fysionLayout{top: top, left: left, right: right, content: content, dividers: dividers}
+func newHermesLayout(top, left, right, content fyne.CanvasObject, dividers [3]fyne.CanvasObject) fyne.Layout {
+	return &hermesLayout{top: top, left: left, right: right, content: content, dividers: dividers}
 }
 
-func (l *fysionLayout) Layout(_ []fyne.CanvasObject, size fyne.Size) {
+func (l *hermesLayout) Layout(_ []fyne.CanvasObject, size fyne.Size) {
 	topHeight := l.top.MinSize().Height
 	l.top.Resize(fyne.NewSize(size.Width, topHeight))
 
@@ -40,7 +40,7 @@ func (l *fysionLayout) Layout(_ []fyne.CanvasObject, size fyne.Size) {
 	l.dividers[2].Resize(fyne.NewSize(dividerThickness, size.Height-topHeight))
 }
 
-func (l *fysionLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
+func (l *hermesLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
 	borders := fyne.NewSize(
 		sidewidth*2,
 		l.top.MinSize().Height,

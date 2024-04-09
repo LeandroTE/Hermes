@@ -1,4 +1,4 @@
-package main
+package gui
 
 import (
 	"image/color"
@@ -19,10 +19,18 @@ func makeBanner() fyne.CanvasObject {
 	return container.NewStack(toolbar, logo)
 }
 
-func makeGUI() fyne.CanvasObject {
+func makeLeftMenu() fyne.CanvasObject {
+	return widget.NewLabel("Serial configuration")
+}
+
+func makeRightMenu() fyne.CanvasObject {
+	return widget.NewLabel("Advanced Settings")
+}
+
+func MakeGUI() fyne.CanvasObject {
 	top := makeBanner()
-	left := widget.NewLabel("Serial configuration")
-	right := widget.NewLabel("Advanced Settings")
+	left := makeLeftMenu()
+	right := makeRightMenu()
 
 	content := canvas.NewRectangle(color.Gray{Y: 0xee})
 
@@ -30,5 +38,5 @@ func makeGUI() fyne.CanvasObject {
 		widget.NewSeparator(), widget.NewSeparator(), widget.NewSeparator(),
 	}
 	objs := []fyne.CanvasObject{content, top, left, right, dividers[0], dividers[1], dividers[2]}
-	return container.New(newFysionLayout(top, left, right, content, dividers), objs...)
+	return container.New(newHermesLayout(top, left, right, content, dividers), objs...)
 }
