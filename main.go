@@ -8,10 +8,12 @@ import (
 )
 
 func main() {
-	a := app.New()
-	a.Settings().SetTheme(gui.NewHermesTheme())
-	w := a.NewWindow("Hermes")
-	w.Resize(fyne.NewSize(1024, 768))
-	w.SetContent(gui.MakeGUI())
-	w.ShowAndRun()
+	mainApp := app.New()
+	mainApp.Settings().SetTheme(gui.NewHermesTheme())
+	mainWindow := mainApp.NewWindow("Hermes")
+	mainWindow.Resize(fyne.NewSize(1024, 768))
+
+	mainGui := gui.GuiObj{Win: mainWindow}
+	mainWindow.SetContent(mainGui.MakeGUI())
+	mainWindow.ShowAndRun()
 }

@@ -10,6 +10,10 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+type GuiObj struct {
+	Win fyne.Window
+}
+
 func makeBanner() fyne.CanvasObject {
 	toolbar := widget.NewToolbar(
 		widget.NewToolbarAction(theme.HomeIcon(), func() {}),
@@ -27,7 +31,7 @@ func makeRightMenu() fyne.CanvasObject {
 	return widget.NewLabel("Advanced Settings")
 }
 
-func MakeGUI() fyne.CanvasObject {
+func (g *GuiObj) MakeGUI() fyne.CanvasObject {
 	top := makeBanner()
 	left := makeLeftMenu()
 	right := makeRightMenu()
